@@ -1,5 +1,4 @@
 <template>
-    <!-- Booking Form -->
     <lightning-card title="Airline Calendar" icon-name="standard:travel_mode">
         <div class="slds-p-around_medium">
             <!-- Passenger Name -->
@@ -11,20 +10,22 @@
             </lightning-input>
 
             <!-- Departure Date -->
-            <lightning-date-picker 
+            <lightning-input 
+                type="text" 
                 label="Departure Date" 
                 value={departureDate} 
                 onchange={handleDateChange} 
                 data-id="departureDate">
-            </lightning-date-picker>
+            </lightning-input>
 
             <!-- Return Date -->
-            <lightning-date-picker 
+            <lightning-input 
+                type="text" 
                 label="Return Date" 
                 value={returnDate} 
                 onchange={handleDateChange} 
                 data-id="returnDate">
-            </lightning-date-picker>
+            </lightning-input>
 
             <lightning-button label="Book Flight" onclick={handleSave}></lightning-button>
         </div>
