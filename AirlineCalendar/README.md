@@ -90,3 +90,79 @@ export default class DatePickerTest extends LightningElement {
     </targets>
 </LightningComponentBundle>
 
+
+
+------------------------------------------------
+<template>
+    <lightning-card title="jQuery Date Picker">
+        <div class="slds-p-around_medium">
+            <!-- Passenger Name -->
+            <lightning-input 
+                type="text" 
+                label="Pick a date..." 
+                value={departureDate} 
+                data-id="departureDate">
+            </lightning-input>
+
+            <lightning-button label="Save Date" onclick={handleSave}></lightning-button>
+        </div>
+    </lightning-card>
+</template>
+
+import { LightningElement, track } from 'lwc';
+import { loadScript, loadStyle } from 'lightning/platformResourceLoader';
+import jqueryLib from '@salesforce/resourceUrl/jqueryLib';
+
+export default class DatePickerTest extends LightningElement {
+    @track departureDate = '';
+    isLibLoaded = false;
+
+    renderedCallback() {
+        if (this.isLibLoaded) {
+            return;
+        }
+        this.isLibLoaded = true;
+
+        // Load jQuery and jQuery UI
+        Promise.all([
+            loadScript(this, jqueryLib + '/jquery.min.js'),
+            loadScript(this, jqueryLib + '/jquery-ui.min.js'),
+            loadStyle(this, jqueryLib + '/jquery-ui.min.css')
+        ])
+        .then(() => {
+            console.log('✅ jQuery and jQuery UI loaded');
+            this.initializeCalendar();
+        })
+        .catch(error => {
+            console.error('❌ Error loading libraries', error);
+        });
+    }
+
+    initializeCalendar() {
+        const $ = window.jQuery;
+        const depDateEl = this.template.querySelector('[data-id="departureDate"]');
+
+        if (depDateEl) {
+            // Initialize the jQuery UI date picker
+            $(depDateEl).datepicker({
+                dateFormat: 'yy-mm-dd',
+                onSelect: (dateText) => {
+                    this.departureDate = dateText;
+                    depDateEl.value = dateText; // Update the input field manually
+                    console.log('Departure selected:', dateText);
+                }
+            });
+
+            console.log('✅ Datepicker initialized successfully');
+        } else {
+            console.error('❌ Datepicker input not found');
+        }
+    }
+
+    handleSave() {
+        alert(`Booking saved! Departure Date: ${this.departureDate}`);
+    }
+}
+
+
+
