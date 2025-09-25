@@ -1,12 +1,22 @@
-<!-- Display the saved record -->
-    <template if:true={isRecordSaved}>
-        <div class="slds-box slds-box_xx-small slds-text-align_center">
-            <h3>Booking Confirmation:</h3>
-            <p><strong>Passenger Name:</strong> {passengerName}</p>
-            <p><strong>Departure Date:</strong> {departureDate}</p>
-            <p><strong>Return Date:</strong> {returnDate}</p>
-        </div>
-    </template>
+public with sharing class AirlineCalendarController {
+    @AuraEnabled
+    public static void saveBooking(String name, Date departureDate, Date returnDate) {
+        Airline_Booking__c booking = new Airline_Booking__c(
+            Passenger_Name__c = name,
+            Departure_Date__c = departureDate,
+            Return_Date__c = returnDate
+        );
+        insert booking;
+    }
 
+    @AuraEnabled(cacheable=true)
+    public static List<Airline_Booking__c> getBookings() {
+        return [
+            SELECT Passenger_Name__c, Departure_Date__c, Return_Date__c 
+            FROM Airline_Booking__c
+            ORDER BY CreatedDate DESC
+            LIMIT 20
+        ];
+    }
 
-
+}
