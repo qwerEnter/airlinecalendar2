@@ -30,41 +30,42 @@ export default class AirlineCalendar extends LightningElement {
     }
 
     initializeCalendar() {
-        const $ = window.jQuery;
+    const $ = window.jQuery;
+    console.log("Initializing date pickers...");
 
-        // Query for the date picker elements
-        const depDateEl = this.template.querySelector('[data-id="departureDate"]');
-        const retDateEl = this.template.querySelector('[data-id="returnDate"]');
+    const depDateEl = this.template.querySelector('[data-id="departureDate"]');
+    const retDateEl = this.template.querySelector('[data-id="returnDate"]');
 
-        // Initialize date pickers if elements exist
-        if (depDateEl && retDateEl) {
-            $(depDateEl).datepicker({
-                dateFormat: 'yy-mm-dd',
-                onSelect: (dateText) => {
-                    this.departureDate = dateText;
-                    depDateEl.value = dateText;  // Manually update the input field
-                    console.log('Departure selected:', dateText);
-                },
-                beforeShow: function(input, inst) {
-                    setTimeout(() => { $(input).focus(); }, 100); // Ensure focus
-                }
-            });
+    if (depDateEl && retDateEl) {
+        console.log("Date picker elements found, initializing...");
+        $(depDateEl).datepicker({
+            dateFormat: 'yy-mm-dd',
+            onSelect: (dateText) => {
+                this.departureDate = dateText;
+                depDateEl.value = dateText; // Manually update the input field
+                console.log('Departure selected:', dateText);
+            },
+            beforeShow: function(input, inst) {
+                setTimeout(() => { $(input).focus(); }, 100); // Ensure focus
+            }
+        });
 
-            $(retDateEl).datepicker({
-                dateFormat: 'yy-mm-dd',
-                onSelect: (dateText) => {
-                    this.returnDate = dateText;
-                    retDateEl.value = dateText;  // Manually update the input field
-                    console.log('Return selected:', dateText);
-                },
-                beforeShow: function(input, inst) {
-                    setTimeout(() => { $(input).focus(); }, 100); // Ensure focus
-                }
-            });
+        $(retDateEl).datepicker({
+            dateFormat: 'yy-mm-dd',
+            onSelect: (dateText) => {
+                this.returnDate = dateText;
+                retDateEl.value = dateText; // Manually update the input field
+                console.log('Return selected:', dateText);
+            },
+            beforeShow: function(input, inst) {
+                setTimeout(() => { $(input).focus(); }, 100); // Ensure focus
+            }
+        });
 
-            console.log('✅ Datepickers initialized successfully');
-        }
+        console.log('✅ Datepickers initialized successfully');
     }
+}
+
 
     handleNameChange(event) {
         this.passengerName = event.target.value;
