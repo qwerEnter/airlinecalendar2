@@ -15,6 +15,7 @@ export default class AirlineCalendar extends LightningElement {
         }
         this.isLibLoaded = true;
 
+        // Load jQuery and jQuery UI
         Promise.all([
             loadScript(this, jqueryLib + '/jquery.min.js'),
             loadScript(this, jqueryLib + '/jquery-ui.min.js'),
@@ -32,20 +33,21 @@ export default class AirlineCalendar extends LightningElement {
     initializeCalendar() {
         const $ = window.jQuery;
 
+        // Query for the date picker elements
         const depDateEl = this.template.querySelector('[data-id="departureDate"]');
         const retDateEl = this.template.querySelector('[data-id="returnDate"]');
 
+        // Initialize date pickers if elements exist
         if (depDateEl && retDateEl) {
-            // Initialize the date pickers
             $(depDateEl).datepicker({
                 dateFormat: 'yy-mm-dd',
                 onSelect: (dateText) => {
                     this.departureDate = dateText;
+                    depDateEl.value = dateText;  // Manually update the input field
                     console.log('Departure selected:', dateText);
-                    depDateEl.value = dateText; // Manually update the input value
                 },
                 beforeShow: function(input, inst) {
-                    setTimeout(() => { $(input).focus(); }, 100);
+                    setTimeout(() => { $(input).focus(); }, 100); // Ensure focus
                 }
             });
 
@@ -53,11 +55,11 @@ export default class AirlineCalendar extends LightningElement {
                 dateFormat: 'yy-mm-dd',
                 onSelect: (dateText) => {
                     this.returnDate = dateText;
+                    retDateEl.value = dateText;  // Manually update the input field
                     console.log('Return selected:', dateText);
-                    retDateEl.value = dateText; // Manually update the input value
                 },
                 beforeShow: function(input, inst) {
-                    setTimeout(() => { $(input).focus(); }, 100);
+                    setTimeout(() => { $(input).focus(); }, 100); // Ensure focus
                 }
             });
 
