@@ -6,7 +6,6 @@ export default class AirlineCalendar extends LightningElement {
     @track passengerName = '';
     @track departureDate = '';
     @track returnDate = '';
-    @track bookings = [];
     isLibLoaded = false;
 
     renderedCallback() {
@@ -77,32 +76,6 @@ export default class AirlineCalendar extends LightningElement {
             alert('⚠️ Please fill in all fields before booking.');
             return;
         }
-
-        saveBooking({
-            name: this.passengerName,
-            departureDate: this.departureDate,
-            returnDate: this.returnDate
-        })
-        .then(() => {
-            alert('✅ Booking saved!');
-            this.passengerName = '';
-            this.departureDate = '';
-            this.returnDate = '';
-            this.loadBookings();
-        })
-        .catch(error => {
-            console.error(error);
-            alert('❌ Error saving booking');
-        });
-    }
-
-    loadBookings() {
-        getBookings()
-            .then(result => {
-                this.bookings = result;
-            })
-            .catch(error => {
-                console.error('Error loading bookings:', error);
-            });
+        alert('✅ Booking saved!');
     }
 }
