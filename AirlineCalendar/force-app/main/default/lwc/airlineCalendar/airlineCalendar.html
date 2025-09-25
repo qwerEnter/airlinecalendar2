@@ -1,5 +1,6 @@
 <template>
-    <lightning-card title="Airline Calendar" icon-name="standard:travel_mode">
+    <!-- Simple Form for Date Picker -->
+    <lightning-card title="Test Date Picker">
         <div class="slds-p-around_medium">
             <!-- Passenger Name -->
             <lightning-input 
@@ -14,7 +15,6 @@
                 type="text" 
                 label="Departure Date" 
                 value={departureDate} 
-                onchange={handleDateChange} 
                 data-id="departureDate">
             </lightning-input>
 
@@ -23,7 +23,6 @@
                 type="text" 
                 label="Return Date" 
                 value={returnDate} 
-                onchange={handleDateChange} 
                 data-id="returnDate">
             </lightning-input>
 
