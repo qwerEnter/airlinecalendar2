@@ -98,3 +98,9 @@ export default class DatePickerTest extends LightningElement {
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
+
+
+Type                     │ Name           │ Problem                                                 │ Line:Column │
+├──────────────────────────┼────────────────┼─────────────────────────────────────────────────────────┼─────────────┤
+│ LightningComponentBundle │ datePickerTest │ You must specify individual objects. You can't use '*'. │             │
+└──────────────────────────┴────────────────┴─────────────────────────────────────────────────────────
