@@ -80,27 +80,13 @@ export default class DatePickerTest extends LightningElement {
 
 ----------------------------------------------------------------------------------------------------------------------------------
 
-
 <?xml version="1.0" encoding="UTF-8"?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>52.0</apiVersion>
     <isExposed>true</isExposed>
     <targets>
-        <target>lightning__RecordPage</target>
         <target>lightning__AppPage</target>
         <target>lightning__RecordHome</target>
     </targets>
-    <targetConfigs>
-        <targetConfig targets="lightning__RecordPage">
-            <objects>
-                <object>*</object>
-            </objects>
-        </targetConfig>
-    </targetConfigs>
 </LightningComponentBundle>
 
-
-Type                     │ Name           │ Problem                                                 │ Line:Column │
-├──────────────────────────┼────────────────┼─────────────────────────────────────────────────────────┼─────────────┤
-│ LightningComponentBundle │ datePickerTest │ You must specify individual objects. You can't use '*'. │             │
-└──────────────────────────┴────────────────┴─────────────────────────────────────────────────────────
