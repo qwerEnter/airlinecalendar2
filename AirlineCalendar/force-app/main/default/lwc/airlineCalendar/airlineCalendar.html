@@ -5,28 +5,26 @@
             <!-- Passenger Name -->
             <lightning-input 
                 type="text" 
-                label="Name" 
+                label="Passenger Name" 
                 value={passengerName} 
                 onchange={handleNameChange}>
             </lightning-input>
 
             <!-- Departure Date -->
-            <lightning-input 
-                type="text" 
+            <lightning-date-picker 
                 label="Departure Date" 
                 value={departureDate} 
                 onchange={handleDateChange} 
                 data-id="departureDate">
-            </lightning-input>
+            </lightning-date-picker>
 
             <!-- Return Date -->
-            <lightning-input 
-                type="text" 
+            <lightning-date-picker 
                 label="Return Date" 
                 value={returnDate} 
                 onchange={handleDateChange} 
                 data-id="returnDate">
-            </lightning-input>
+            </lightning-date-picker>
 
             <lightning-button label="Book Flight" onclick={handleSave}></lightning-button>
         </div>
